@@ -305,7 +305,7 @@
       }
     }
 
-    /* 6. HERO DE AUTORIDAD (LCP OPTIMIZADO) */
+    /* 6. HERO DE AUTORIDAD CON RETRATO REAL (LCP OPTIMIZADO) */
     .hero {
       padding-block-start: clamp(2.5rem, 4vw + 1.5rem, 4.5rem);
       padding-block-end: var(--space-section);
@@ -313,7 +313,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
       gap: clamp(2rem, 4vw, 3.5rem);
       align-items: center;
     }
@@ -373,19 +373,59 @@
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.25rem;
+      padding: 1rem;
       box-shadow: var(--shadow-lg);
-      aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 440px;
+      width: 100%;
+      margin-inline: auto;
+      position: relative;
     }
 
-    .hero-visual svg {
+    .hero-photo-frame {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: #27272a;
+      position: relative;
+    }
+
+    .hero-photo-frame img {
       width: 100%;
       height: 100%;
-      border-radius: var(--radius-md);
+      object-fit: cover;
+      object-position: center top;
       display: block;
+    }
+
+    .hero-caption-bar {
+      margin-block-start: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-inline: 0.25rem;
+    }
+
+    .hero-caption-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .hero-caption-sub {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .hero-caption-pill {
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
     }
 
     /* 7. BIO NARRATIVA Y 3 HITOS CLAVE */
@@ -448,7 +488,7 @@
       color: var(--text-muted);
     }
 
-    /* 8. PORTAFOLIO INTERACTIVO CON CONTAINER QUERIES */
+    /* 8. PORTAFOLIO INTERACTIVO CON VIDEOS REALES Y CONTAINER QUERIES */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -481,7 +521,7 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
       gap: var(--gutter);
     }
 
@@ -507,29 +547,20 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .project-thumb {
-      aspect-ratio: 16 / 9;
+    .project-media {
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      aspect-ratio: 4 / 3;
+      background-color: #18181b;
       position: relative;
+      overflow: hidden;
     }
 
-    .thumb-gastro {
-      background: linear-gradient(135deg, #78350f 0%, #b45309 100%);
-      color: #ffffff;
-    }
-
-    .thumb-health {
-      background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%);
-      color: #ffffff;
-    }
-
-    .thumb-auto {
-      background: linear-gradient(135deg, #18181b 0%, #3f3f46 100%);
-      color: #ffffff;
+    .project-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #18181b;
+      display: block;
     }
 
     .project-body {
@@ -575,12 +606,12 @@
       color: var(--text-muted);
     }
 
-    @container project-card (min-width: 540px) {
+    @container project-card (min-width: 580px) {
       .project-card {
         display: grid;
-        grid-template-columns: 220px 1fr;
+        grid-template-columns: 270px 1fr;
       }
-      .project-thumb {
+      .project-media {
         aspect-ratio: auto;
         height: 100%;
       }
@@ -872,34 +903,24 @@
           </div>
         </div>
 
-        <!-- Ilustración Editorial Vectorial Inline (Sin Lazy Load, dimensiones explícitas) -->
+        <!-- Retrato Profesional (LCP con fetchpriority="high" y dimensiones explícitas) -->
         <div class="hero-visual">
-          <svg
-            width="560"
-            height="420"
-            viewBox="0 0 560 420"
-            role="img"
-            aria-label="Composición visual creativa representando diseño gráfico, edición audiovisual y estrategia digital de Daniela Calisaya">
-            <rect width="560" height="420" rx="16" fill="#18181b" />
-            <circle cx="460" cy="80" r="110" fill="#d97706" fill-opacity="0.18" />
-            <circle cx="110" cy="350" r="120" fill="#b45309" fill-opacity="0.22" />
-
-            <!-- Tarjeta Simulada de Campaña -->
-            <rect x="44" y="48" width="290" height="190" rx="14" fill="#27272a" stroke="#3f3f46" stroke-width="1.5" />
-            <rect x="64" y="68" width="84" height="24" rx="12" fill="#d97706" />
-            <text x="106" y="84" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">CAMPAÑA</text>
-            <rect x="64" y="108" width="220" height="14" rx="7" fill="#fafaf9" />
-            <rect x="64" y="132" width="175" height="12" rx="6" fill="#a8a29e" />
-            <rect x="64" y="168" width="110" height="36" rx="8" fill="#fafaf9" />
-            <text x="119" y="191" fill="#18181b" font-family="system-ui, sans-serif" font-size="12" font-weight="800" text-anchor="middle">Identidad &amp; Ads</text>
-
-            <!-- Tarjeta Flotante Audiovisual -->
-            <rect x="236" y="176" width="280" height="196" rx="14" fill="#fafaf9" />
-            <rect x="256" y="196" width="240" height="104" rx="10" fill="#18181b" />
-            <polygon points="366,232 366,264 394,248" fill="#d97706" />
-            <rect x="256" y="316" width="150" height="12" rx="6" fill="#18181b" />
-            <rect x="256" y="338" width="210" height="10" rx="5" fill="#78716c" />
-          </svg>
+          <div class="hero-photo-frame">
+            <img
+              src="daniela-perfil.jpg"
+              alt="Retrato profesional de Daniela Salvatierra Calisaya"
+              width="440"
+              height="550"
+              fetchpriority="high"
+              loading="eager">
+          </div>
+          <div class="hero-caption-bar">
+            <div>
+              <div class="hero-caption-title">Daniela Salvatierra Calisaya</div>
+              <div class="hero-caption-sub">Marketing Digital &amp; Producción Creativa</div>
+            </div>
+            <span class="hero-caption-pill">Disponible</span>
+          </div>
         </div>
       </div>
     </section>
@@ -954,14 +975,14 @@
       </div>
     </section>
 
-    <!-- 3. PORTAFOLIO DE PROYECTOS DESTACADOS -->
+    <!-- 3. PORTAFOLIO DE PROYECTOS DESTACADOS CON VIDEOS REALES -->
     <section id="portafolio">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">Portafolio Seleccionado</span>
           <h2>Proyectos destacados</h2>
           <p style="color: var(--text-muted);">
-            Filtra por sector para explorar mi experiencia práctica en comunicación, diseño y contenido audiovisual.
+            Reproduce los videos de cada campaña o filtra por sector para explorar mi experiencia práctica.
           </p>
         </div>
 
@@ -976,27 +997,30 @@
           <!-- Proyecto 1: HORNEADOS DANI -->
           <div class="card-container" data-category="gastronomia">
             <article class="project-card">
-              <div class="project-thumb thumb-gastro" aria-hidden="true">
-                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"></path>
-                  <line x1="9" y1="21" x2="15" y2="21"></line>
-                </svg>
+              <div class="project-media">
+                <video
+                  src="horneados.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="Video promocional para Horneados Dani">
+                </video>
               </div>
               <div class="project-body">
                 <div>
                   <span class="project-tag">Gastronomía · Promoción Local</span>
                   <h3>HORNEADOS DANI</h3>
                   <p>
-                    Publicidad y promoción integral para emprendimiento gastronómico: diseño de piezas gráficas apetitosas, contenido para redes sociales y gestión directa de pedidos mediante WhatsApp Business.
+                    Publicidad y promoción integral para emprendimiento gastronómico en Barrio Amboró: producción de reels con enfoque de antojo y conversión directa hacia pedidos por WhatsApp Business.
                   </p>
                   <ul class="project-deliverables">
+                    <li>Video vertical 9:16</li>
                     <li>Flyers promocionales</li>
-                    <li>Videos cortos</li>
                     <li>WhatsApp Business</li>
                   </ul>
                 </div>
                 <a
-                  href="https://wa.me/59178142994?text=Hola%20Daniela%2C%20me%20gust%C3%B3%20tu%20trabajo%20en%20Horneados%20Dani%20y%20quiero%20consultar%20por%20un%20proyecto%20similar."
+                  href="https://wa.me/59178142994?text=Hola%20Daniela%2C%20me%20gust%C3%B3%20tu%20video%20para%20Horneados%20Dani%20y%20quiero%20consultar%20por%20un%20proyecto%20similar."
                   class="service-cta"
                   target="_blank"
                   rel="noopener noreferrer">
@@ -1010,18 +1034,21 @@
           <!-- Proyecto 2: CLÍNICA LOS ÁNGELES -->
           <div class="card-container" data-category="salud">
             <article class="project-card">
-              <div class="project-thumb thumb-health" aria-hidden="true">
-                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                </svg>
+              <div class="project-media">
+                <video
+                  src="clinica.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="Video publicitario para Clínica Los Ángeles Critical Center">
+                </video>
               </div>
               <div class="project-body">
                 <div>
                   <span class="project-tag">Salud · Audiovisual</span>
                   <h3>CLÍNICA LOS ÁNGELES</h3>
                   <p>
-                    Creación y edición de contenido audiovisual publicitario orientado a proyectar confianza institucional, calidad médica y cercanía con los pacientes en canales digitales.
+                    Creación y edición de contenido audiovisual publicitario para Critical Center, destacando equipamiento quirúrgico y atención especializada para proyectar confianza institucional.
                   </p>
                   <ul class="project-deliverables">
                     <li>Video publicitario</li>
@@ -1044,23 +1071,25 @@
           <!-- Proyecto 3: NOVACARS -->
           <div class="card-container" data-category="corporativo">
             <article class="project-card">
-              <div class="project-thumb thumb-auto" aria-hidden="true">
-                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
+              <div class="project-media">
+                <video
+                  src="novacars.mp4"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  aria-label="Video y diseño de reclutamiento para Novacars Chaperío">
+                </video>
               </div>
               <div class="project-body">
                 <div>
                   <span class="project-tag">Corporativo · Reclutamiento</span>
                   <h3>NOVACARS</h3>
                   <p>
-                    Comunicación estratégica y diseño de material de reclutamiento para atraer talento calificado con piezas claras, modernas y alineadas a la identidad de la empresa.
+                    Comunicación estratégica, video promocional y diseño de material de reclutamiento para atraer talento técnico con piezas claras, dinámicas y alineadas a la identidad de la empresa.
                   </p>
                   <ul class="project-deliverables">
-                    <li>Piezas de reclutamiento</li>
-                    <li>Diseño gráfico</li>
+                    <li>Spot de reclutamiento</li>
+                    <li>Diseño de flyer</li>
                     <li>Comunicación corporativa</li>
                   </ul>
                 </div>
@@ -1310,7 +1339,7 @@
         });
       }
 
-      // 3. Filtro interactivo de portafolio mediante delegación de eventos
+      // 3. Filtro interactivo de portafolio mediante delegación de eventos (pausa videos ocultos)
       const filterBar = document.querySelector('.filter-bar');
       const projectCards = document.querySelectorAll('#portfolio-grid .card-container');
 
@@ -1330,6 +1359,10 @@
             if (shouldShow) {
               card.removeAttribute('hidden');
             } else {
+              const videoEl = card.querySelector('video');
+              if (videoEl && !videoEl.paused) {
+                videoEl.pause();
+              }
               card.setAttribute('hidden', '');
             }
           });
